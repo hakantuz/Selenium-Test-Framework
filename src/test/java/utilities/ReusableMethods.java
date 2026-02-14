@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class ReusableMethods {
 
-    // 1. Bekleme Metodu (Hard Wait) - Mecbur kalmadıkça kullanma ama bulunsun :)
+    // 1. Bekleme Metodu (Hard Wait)
     public static void bekle(int saniye) {
         try {
             Thread.sleep(saniye * 1000);

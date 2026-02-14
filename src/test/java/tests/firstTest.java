@@ -1,19 +1,19 @@
 package tests;
 
-import org.junit.Test; // Kırmızı yanarsa üzerine gelip "Add JUnit 4 to classpath" de.
+import org.junit.Test;
+import utilities.ConfigReader;
 import utilities.Driver;
 
 public class firstTest {
 
     @Test
     public void amazonTesti() {
-        // 1. Driver'ı çağır ve Amazon'a git
-        Driver.getDriver().get("https://www.amazon.com");
+        // Adresi artık properties dosyasından çağırıyoruz
+        Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));
 
-        // 2. Gittiğini konsola yazdır
         System.out.println("Site başlığı: " + Driver.getDriver().getTitle());
 
-        // 3. Kapat
         Driver.closeDriver();
     }
-}
+    }
+

@@ -1,0 +1,58 @@
+{
+  "info": {
+    "_postman_id": "6c83d0b3-dcca-4a36-a558-51932e50fdef",
+    "name": "SDET_API_Dersleri",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31041194"
+  },
+  "item": [
+    {
+      "name": "https://jsonplaceholder.typicode.com/todos/1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// 1. Gelen kutuyu (JSON) açıyoruz\r",
+              "var jsonData = pm.response.json();\r",
+              "\r",
+              "// 2. Kutunun içindeki \"id\" değeri 1 mi diye bakıyoruz\r",
+              "pm.test(\"ID Kontrolü\", function () {\r",
+              "    pm.expect(jsonData.id).to.eql(1);\r",
+              "});\r",
+              "\r",
+              "// 3. Başlık (title) doğru mu diye bakıyoruz\r",
+              "pm.test(\"Başlık Kontrolü\", function () {\r",
+              "    pm.expect(jsonData.title).to.eql(\"delectus aut autem\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/todos/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "todos",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

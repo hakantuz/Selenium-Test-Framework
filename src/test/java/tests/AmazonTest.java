@@ -1,21 +1,22 @@
-package tests;
+package tests; // Paket ismin neyse o
 
-import org.junit.Test;
-import pages.AmazonPage;
-import utilities.Driver;
+import org.testng.annotations.Test;
+import pages.AmazonPage; // Sayfa klasörün
+import utilities.ConfigReader;
+import utilities.TestBase; // Yeni yazdığımız sınıf
 
-public class AmazonTest {
+// extends TestBase diyerek "Senin baban TestBase'dir, onun özelliklerini kullan" dedik.
+public class AmazonTest extends TestBase {
 
     @Test
     public void test01() {
-        // 1. Sayfaya git
-        Driver.getDriver().get("https://www.amazon.com.tr");
+        // Artık driver = ... demene gerek yok! TestBase halletti.
+        // Direkt sürüyoruz:
 
-        // 2. Page sınıfından bir obje oluştur
+        driver.get(ConfigReader.getProperty("amazonUrl")); // ConfigReader'ı da kullandık
+
         AmazonPage amazonPage = new AmazonPage();
-
-        // 3. Artık sadece "nokta" koyarak elemanlara ulaşıyoruz
-        amazonPage.aramaKutusu.sendKeys("iPhone 15");
+        amazonPage.aramaKutusu.sendKeys(ConfigReader.getProperty("aramaKelimesi")); // Samsung
         amazonPage.aramaButonu.click();
     }
 }

@@ -2,28 +2,15 @@ package tests;
 
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AmazonPage;
 import utilities.ConfigReader;
 import utilities.DataProviderUtils;
 import utilities.Driver;
-import utilities.TestBase;
 
-public class AmazonDataTest2 extends TestBase {
+public class AmazonDataTest3 {
 
-    // DEPO: Artık her satırda 2 mermi var! { "Aranacak Kelime", "Beklenen Başlık" }
-    @DataProvider(name = "aranacakKelimeler")
-    public Object[][] aranacakKelimeler() {
-        return new Object[][] {
-                {"Java", "Java"},
-                {"Selenium", "Selenium"},
-                {"Nutella", "Nutella"} // Tatlı bir kapanış olsun :)
-        };
-    }
-
-
-    @Test(dataProvider = "amazonKelimeleri", dataProviderClass = DataProviderUtils.class)
+    @Test(dataProvider = "excelVerileri", dataProviderClass = DataProviderUtils.class)
     public void cokluAramaTesti(String aranacakKelime, String beklenenBaslik) {
 
         Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));

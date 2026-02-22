@@ -4,6 +4,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.IOException;
 import java.time.Duration;
 
 public class ReusableMethods {
@@ -43,5 +45,21 @@ public class ReusableMethods {
     // 5. Sayfayı Aşağı Kaydırma (Scroll Into View)
     public static void scrollIntoViewJS(WebElement element) {
         ((JavascriptExecutor) utilities.Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    // 6. Ekran Görüntüsü Alma Metodu (Test patlarsa kanıt çeker!)
+    public static String getScreenshot(String name) throws IOException {
+        // Fotoğrafın adını benzersiz yapmak için tarih ekliyoruz
+        String date = new java.text.SimpleDateFormat("yyyyMMddhhmmss").format(new java.util.Date());
+        org.openqa.selenium.TakesScreenshot ts = (org.openqa.selenium.TakesScreenshot) utilities.Driver.getDriver();
+
+        java.io.File source = ts.getScreenshotAs(org.openqa.selenium.OutputType.FILE);
+
+        // Fotoğrafın kaydedileceği yer: projenin içinde test-output klasörü
+        String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
+        java.io.File finalDestination = new java.io.File(target);
+
+        org.apache.commons.io.FileUtils.copyFile(source, finalDestination);
+        return target;
     }
 }

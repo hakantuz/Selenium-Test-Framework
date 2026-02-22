@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Haftasonu Regresyon Süiti" verbose="1">
+
+    <test name="Amazon Toplu Arama ve Raporlama">
+
+        <classes>
+            <class name="tests.AmazonDataTest" />
+
+            <class name="tests.AmazonRaporTest" />
+        </classes>
+
+    </test>
+
+</suite>

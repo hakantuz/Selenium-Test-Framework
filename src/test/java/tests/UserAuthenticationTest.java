@@ -1,10 +1,8 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import pages.AmazonPage;
 import pages.HerokuAppPage;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -16,9 +14,27 @@ public class UserAuthenticationTest extends TestBase {
 
     @Test
     public void basariliGirisTesti() {
-        Driver.getDriver().get(ConfigReader.getProperty("gizlikarargahUrl"));
+        Driver.getDriver().get(ConfigReader.getProperty("testUrl"));
+
+        HerokuAppPage herokuAppPage = new HerokuAppPage();
 
         // Elementleri bul ve hamle yap
-        HerokuAppPage.
+        herokuAppPage.username.sendKeys("tomsmith");
+        herokuAppPage.password.sendKeys("SuperSecretPassword!");
+        herokuAppPage.login.click();
+
+        String expectedTitle = "The Internet";
+        String actualTitle = Driver.getDriver().getTitle();
+
+        Assert.assertEquals(actualTitle, expectedTitle, "Başarısız! Başlıklar uyuşmuyor.");
+
     }
-}
+
+        @AfterMethod
+        public void tearDown() {
+            Driver.closeDriver();
+
+            }
+        }
+
+

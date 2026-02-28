@@ -4,7 +4,7 @@ import org.junit.Test;
 import utilities.ConfigReader;
 import utilities.Driver;
 
-public class firstTest {
+public class FirstTest {
 
     @Test
     public void amazonTesti() {
